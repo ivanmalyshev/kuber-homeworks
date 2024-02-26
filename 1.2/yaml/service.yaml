@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: netology-web
+  name:  netology-svc
+spec:
+  selector:
+    app:  netology-web
+  ports:
+  - name:  netology-web-port
+    port:  80
+    targetPort:  8080
