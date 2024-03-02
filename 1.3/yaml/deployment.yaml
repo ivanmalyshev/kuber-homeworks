@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: lesson3
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: lesson3
