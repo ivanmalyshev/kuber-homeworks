@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: nginx-step2
+spec:
+ replicas: 1
+ selector:
+    matchLabels:
+      app: nginx-step2
+ template:
+    metadata:
+      labels:
+        app: nginx-step2
+    spec:
+      initContainers:
+      - name: check-service
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nslookup service-step2; do echo waiting for myservice; sleep 2; done;']
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80

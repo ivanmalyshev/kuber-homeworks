@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  service-step2
+spec:
+  selector:
+    app:  nginx-step2
+  type:  ClusterIP
+  ports:
+  - name:  svc-lesson3-port
+    port:  80
+    targetPort:  80
