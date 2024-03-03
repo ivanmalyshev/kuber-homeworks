@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  lesson4-svc
+spec:
+  selector:
+    app:  lesson4
+  type:  NodePort
+  ports:
+  - name:  lesson4-port-nginx
+    port:  80
+    nodePort:  32656
+  - name: lesson4-port-multitool
+    port: 8080
+    nodePort: 32657
