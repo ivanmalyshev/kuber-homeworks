@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lesson5-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lesson5-backend
+  template:
+    metadata:
+      labels:
+        app: lesson5-backend
+    spec:
+      containers:
+      - name: lesson5-backend
+        image: wbitt/network-multitool
+        env:
+          - name: HTTP_PORT
+            value: "8080"
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

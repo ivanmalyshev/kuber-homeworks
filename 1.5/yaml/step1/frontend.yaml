@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lesson5-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: lesson5-frontend
+  template:
+    metadata:
+      labels:
+        app: lesson5-frontend
+    spec:
+      initContainers:
+        - name: init
+          image:  alpine
+          command: ['sh', '-c', 'echo "Welcome to nginx container" > /usr/share/nginx/html/index.html']
+          volumeMounts:
+            - name:  webdata
+              mountPath:  "/usr/share/nginx/html"
+      containers:
+        - name: lesson5-frontend
+          image: nginx
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          volumeMounts:
+          - name:  webdata
+            mountPath:  "/usr/share/nginx/html"
+          ports:
+          - containerPort: 80
+      volumes:
+        - name:  webdata
+          emptyDir: {}

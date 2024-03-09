@@ -1,0 +1,25 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  lesson5-frontend
+spec:
+  selector:
+    app:  lesson5-frontend
+  type:  ClusterIP
+  ports:
+  - name:  lesson5-port-nginx
+    port:  80
+    targetPort:  80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  lesson5-backend
+spec:
+  selector:
+    app:  lesson5-backend
+  type:  ClusterIP
+  ports:
+  - name: lesson4-port-multitool
+    port: 80
+    targetPort: 8080
