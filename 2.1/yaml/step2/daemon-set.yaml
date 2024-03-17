@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: lesson6-step2
+  labels:
+    app: lesson6-step2
+spec:
+  selector:
+    matchLabels:
+      app: lesson6-step2
+  template:
+    metadata:
+      labels:
+        app: lesson6-step2
+    spec:
+      tolerations:
+      # this toleration is to have the daemonset runnable on master nodes
+      # remove it if your masters can't run pods
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: lesson6-step2
+        image: wbitt/network-multitool
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: syslog
+          mountPath: /var/log/syslog
+          readOnly: true
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: syslog
+        hostPath:
+          path: /var/log/syslog
+          type: File
