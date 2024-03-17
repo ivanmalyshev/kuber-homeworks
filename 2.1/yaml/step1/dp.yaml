@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lesson6-step1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lesson6-step1
+  template:
+    metadata:
+      labels:
+        app: lesson6-step1
+    spec:
+      containers:
+      - name: lesson6-multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+        - name:  shared-data
+          mountPath:  /shared
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      - name: lesson6-busybox
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args:
+          - >
+            while true; do
+                echo "$(date)" >> /shared/date.log;
+                echo "HI NETOLOGY!!!" >> /shared/date.log
+                echo "-----------------" >> /shared/date.log
+                sleep 5;
+            done;
+        volumeMounts:
+        - name:  shared-data
+          mountPath:  /shared
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      volumes:
+      - name:  shared-data
+        emptyDir: {}
