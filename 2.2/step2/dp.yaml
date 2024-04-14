@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lesson7-step2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lesson7-step2
+  template:
+    metadata:
+      labels:
+        app: lesson7-step2
+    spec:
+      containers:
+      - name: lesson7-multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+        - name:  shared-data
+          mountPath:  /data
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        ports:
+        - name:  http-port
+          containerPort:  8080
+        - name:  https-port
+          containerPort:  8443
+      - name: lesson7-busybox
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args:
+          - >
+            while true; do
+                echo "$(date)" >> /data/date.log;
+                echo "HI NETOLOGY!!!" >> /data/date.log
+                echo "-----------------" >> /data/date.log
+                sleep 5;
+            done;
+        volumeMounts:
+        - name:  shared-data
+          mountPath:  /data
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+      volumes:
+      - name:  shared-data
+        persistentVolumeClaim:
+         claimName: lesson7-nfs
