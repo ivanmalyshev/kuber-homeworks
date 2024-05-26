@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: index-html-conf
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Увлекательная страница</title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400,300&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>Добро пожаловать 🌟</h1>
+            <nav>
+                <ul>
+                    <li><a href="#section1">Раздел 1</a></li>
+                    <li><a href="#section2">Раздел 2</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="section1">
+                <h2>Интересный раздел 📚</h2>
+                <p>Здесь вы найдете много полезной информации. 👍</p>
+            </section>
+            <section id="section2">
+                <h2>Дополнительный раздел 🎉</h2>
+                <p>Еще одна причина посетить наш сайт. 💡</p>
+            </section>
+        </main>
+        <footer>
+            <p>Спасибо за посещение нашего сайта 🙏</p>
+        </footer>
+        <alt="Описание изображения" loading="lazy">
+    </body>
+    </html>

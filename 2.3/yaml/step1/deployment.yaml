@@ -19,6 +19,9 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        volumeMounts:
+          - name:  index
+            mountPath:  /usr/share/nginx/html
         ports:
         - containerPort: 80
       - name: lesson8-multitool
@@ -32,3 +35,7 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+      volumes:
+      - name:  index
+        configMap:
+          name: index-html-conf
