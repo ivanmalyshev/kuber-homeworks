@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  lesson8-svc
+spec:
+  selector:
+    app:  lesson8
+  type:  ClusterIP
+  ports:
+  - name:  lesson8-port-nginx
+    port:  80
+    targetPort:  80
+  - name: lesson8-port-multitool
+    port: 8080
+    targetPort: 8080
