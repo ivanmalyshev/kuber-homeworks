@@ -40,10 +40,3 @@ data:
         <alt="Описание изображения" loading="lazy">
     </body>
     </html>
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: conf-multitool
-data:
-  PORT: "8080"
