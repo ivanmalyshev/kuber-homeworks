@@ -21,16 +21,18 @@ spec:
             cpu: "500m"
         volumeMounts:
           - name:  index
-            mountPath:  /usr/share/nginx/html
+            mountPath:  /usr/share/nginx/html/index.html
+            subPath: index.html
         ports:
         - containerPort: 80
       - name: lesson8-multitool
         image: wbitt/network-multitool
         env:
-          - name: HTTP_PORT
-            value: "8080"
-        ports:
-        - containerPort: 8080
+        - name: multitool-port
+          valueFrom:
+            configMapKeyRef:
+              name: lesson8-config
+              key: multitool-port
         resources:
           limits:
             memory: "128Mi"
@@ -38,4 +40,7 @@ spec:
       volumes:
       - name:  index
         configMap:
-          name: index-html-conf
+          name: lesson8-config
+          items:
+          - key: index.html
+            path: index.html

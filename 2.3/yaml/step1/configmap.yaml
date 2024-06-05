@@ -1,8 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: index-html-conf
+  name: lesson8-config
 data:
+  multitool-port: "8080"
   index.html: |
     <!DOCTYPE html>
     <html lang="ru">
@@ -39,3 +40,10 @@ data:
         <alt="Описание изображения" loading="lazy">
     </body>
     </html>
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: conf-multitool
+data:
+  PORT: "8080"
