@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lesson8-2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lesson8-2
+  template:
+    metadata:
+      labels:
+        app: lesson8-2
+    spec:
+      containers:
+      - name: lesson8-nginx-2
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        volumeMounts:
+          - name:  index
+            mountPath:  /usr/share/nginx/html/index.html
+            subPath: index.html
+          - name: nginx-conf
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
+        ports:
+        - containerPort: 80
+          name: web
+        - containerPort: 8443
+          name: secure-web
+      volumes:
+      - name:  index
+        configMap:
+          name: lesson8-config-2
+          items:
+          - key: index.html
+            path: index.html
+      - name: nginx-cert
+        secret:
+         secretName: nginx-secret
+      - name: nginx-conf
+        configMap:
+          name: lesson8-config-2
+          items:
+          - key: nginx.conf
+            path: nginx.conf

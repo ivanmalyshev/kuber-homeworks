@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  lesson8-svc-2
+spec:
+  selector:
+    app:  lesson8
+  type:  ClusterIP
+  ports:
+  - name: web
+    port:  80
+    targetPort:  8081
+  - name: secure-web
+    protocol: TCP
+    port: 443
+    targetPort: 8443

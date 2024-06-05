@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lesson8-ingress
+  namespace: lesson8
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: "nginx"
+  tls:
+    - hosts:
+        - ingress-k8s.midnas.ru
+      secretName: nginx-secret
+  rules:
+  - host: ingress-k8s.midnas.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: lesson8-svc-2
+            port:
+              number: 80
