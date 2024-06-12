@@ -3,21 +3,21 @@ kind: ConfigMap
 metadata:
   name: lesson8-config-2
 data:
-  nginx.conf: |
-    events {}
-    http {
-        server {
-            listen 80;
-            listen 8443 ssl;
-            # ssl_certificate /etc/nginx/ssl/nginx.crt;
-            # ssl_certificate_key /etc/nginx/ssl/nginx.key;
+#   nginx.conf: |
+#     events {}
+#     http {
+#         server {
+#             listen 80;
+#             listen 8443 ssl;
+#             # ssl_certificate /etc/nginx/ssl/nginx.crt;
+#             # ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
-            location / {
-                root /usr/share/nginx/html;
-                index index.html;
-            }
-        }
-    }
+#             location / {
+#                 root /usr/share/nginx/html;
+#                 index index.html;
+#             }
+#         }
+#     }
   index.html: |
     <!DOCTYPE html>
     <html lang="ru">

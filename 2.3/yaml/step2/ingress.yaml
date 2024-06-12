@@ -8,8 +8,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   tls:
-    - hosts:
-        - ingress-k8s.midnas.ru
+    - hosts: ingress-k8s.midnas.ru
       secretName: nginx-secret
   rules:
   - host: ingress-k8s.midnas.ru

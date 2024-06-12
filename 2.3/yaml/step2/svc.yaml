@@ -4,13 +4,12 @@ metadata:
   name:  lesson8-svc-2
 spec:
   selector:
-    app:  lesson8
-  type:  ClusterIP
+    app:  lesson8-2
   ports:
   - name: web
     port:  80
-    targetPort:  8081
-  - name: secure-web
-    protocol: TCP
-    port: 443
-    targetPort: 8443
+    targetPort:  80
+  # - name: secure-web
+  #   protocol: TCP
+  #   port: 443
+  #   targetPort: 8443

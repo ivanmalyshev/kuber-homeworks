@@ -23,14 +23,14 @@ spec:
           - name:  index
             mountPath:  /usr/share/nginx/html/index.html
             subPath: index.html
-          - name: nginx-conf
-            mountPath: /etc/nginx/nginx.conf
-            subPath: nginx.conf
+          # - name: nginx-conf
+          #   mountPath: /etc/nginx/nginx.conf
+          #   subPath: nginx.conf
         ports:
         - containerPort: 80
           name: web
-        - containerPort: 8443
-          name: secure-web
+        # - containerPort: 8443
+        #   name: secure-web
       volumes:
       - name:  index
         configMap:
@@ -41,9 +41,9 @@ spec:
       - name: nginx-cert
         secret:
          secretName: nginx-secret
-      - name: nginx-conf
-        configMap:
-          name: lesson8-config-2
-          items:
-          - key: nginx.conf
-            path: nginx.conf
+      # - name: nginx-conf
+      #   configMap:
+      #     name: lesson8-config-2
+      #     items:
+      #     - key: nginx.conf
+      #       path: nginx.conf
