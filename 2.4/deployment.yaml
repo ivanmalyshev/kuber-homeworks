@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lesson9
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lesson9
+  template:
+    metadata:
+      labels:
+        app: lesson9
+    spec:
+      containers:
+      - name: lesson9-nginx
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      serviceAccountName: imalyshev
+        # volumeMounts:
+        #   - name:  index
+        #     mountPath:  /usr/share/nginx/html/index.html
+        #     subPath: index.html
+      #   ports:
+      #   - containerPort: 80
+      #     name: web
+      # volumes:
+      # - name:  index
+      #   configMap:
+      #     name: lesson8-config-2
+      #     items:
+      #     - key: index.html
+      #       path: index.html
+      # - name: nginx-cert
+      #   secret:
+      #    secretName: nginx-secret

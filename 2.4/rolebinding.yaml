@@ -5,7 +5,7 @@ metadata:
   namespace: lesson9
 subjects:
 - kind: User
-  name: mid
+  name: midnas
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
